@@ -1,6 +1,7 @@
 # EnvHelper 
 
 by Martin Mittring
+MIT license
 
 Side effect free, log state in unix environment, tested with Windows Subsystem Linux (WSL)
 
