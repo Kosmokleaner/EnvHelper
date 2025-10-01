@@ -4,6 +4,7 @@ by Martin Mittring
 MIT license
 
 Side effect free, log state in unix environment, tested with Windows Subsystem Linux (WSL)
+In the script you cnas find comments on how to adjust the state that was printed e.g. adjust CUDA version 
 
 ## example printout:
 
