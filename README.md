@@ -6,7 +6,7 @@ MIT license
 Side effect free, log state in unix environment, tested with Windows Subsystem Linux (WSL)
 In the script you cnas find comments on how to adjust the state that was printed e.g. adjust CUDA version 
 
-## example printout:
+## example printout (Windows WSL envhelper.sh):
 
 ```shell
 $LD_LIBRARY_PATH = /usr/local/cuda/lib64:/usr/local/cuda/lib64:/usr/local/cuda/lib64
@@ -29,3 +29,18 @@ Copyright (c) 2005-2022 NVIDIA Corporation
 Built on Wed_Sep_21_10:33:58_PDT_2022
 Cuda compilation tools, release 11.8, V11.8.89
 Build cuda_11.8.r11.8/compiler.31833905_0
+
+## example printout (Windows Powershell envhelper.bat):
+
+```shell
+Python 3.11.4
+Torch version = 2.4.0+cu118
+torch.cuda.is_available() = True
+Numpy version = 1.26.4
+GPU 0: NVIDIA GeForce RTX 3090 (UUID: GPU-23e45c3f-5af5-3b3a-3767-bc07e4f2f950)
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2022 NVIDIA Corporation
+Built on Wed_Sep_21_10:41:10_Pacific_Daylight_Time_2022
+Cuda compilation tools, release 11.8, V11.8.89
+Build cuda_11.8.r11.8/compiler.31833905_0
+
