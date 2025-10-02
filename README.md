@@ -1,10 +1,12 @@
-# EnvHelper 
+# EnvHelper V 0.1
 
 by Martin Mittring
 MIT license
 
-Side effect free, log state in unix environment, tested with Windows Subsystem Linux (WSL)
-In the script you cnas find comments on how to adjust the state that was printed e.g. adjust CUDA version 
+* Side effect free
+* log state in unix environment
+* for Unix (tested with Windows Subsystem WSL Ubuntu) and Windows Powershell
+* In the script you can find comments on how to adjust the state that was printed e.g. adjust CUDA version 
 
 ## example printout (Windows WSL envhelper.sh):
 
