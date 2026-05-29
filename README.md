@@ -3,6 +3,7 @@
 by Martin Mittring
 MIT license
 
+* install on unix: "chmod +x envhelper.sh", run: "./envhelper.sh"
 * Side effect free
 * log state in unix environment
 * for Unix (tested with Windows Subsystem WSL Ubuntu) and Windows Powershell
