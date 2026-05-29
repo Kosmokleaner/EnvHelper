@@ -40,6 +40,8 @@ echo "$"CUDA_HOME = $CUDA_HOME
 
 echo "$"VIRTUAL_ENV = $VIRTUAL_ENV
 # e.g. $VIRTUAL_ENV = /home/userName/path/MyEnvironmentName
+# set venv "torch_env":
+# > source ~/venvs/torch_env/bin/activate
 
 # to create env
 # > python3 -m venv MyEnvironmentName
@@ -89,6 +91,17 @@ if VERSION=$("$PYTHON_BIN" --version 2>&1); then
 	fi
 else
     echo "Python: non installed!"
+fi
+
+if command -v conda >/dev/null 2>&1; then
+    echo "Conda: $(conda --version)"
+	# e.g. Conda: conda 26.3.2
+else
+    echo "Conda: not installed"
+	# get https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh
+	# copy to user folder (~) e.g. cp /mnt/c/Users/<YourWindowsUsername>/Downloads/Miniforge3-Linux-x86_64.sh ~/
+	# > /home/mmittring/miniforge3/bin/conda init
+	# restart shell
 fi
  
 # NVIDIA GPU driver
