@@ -2,6 +2,9 @@
 # Side effect free, log state in unix environment, tested with Windows Subsystem Linux (WSL)
 # Version 0.1 10/1/1025
 
+echo "https://github.com/Kosmokleaner/EnvHelper V0.12 $(date "+%Y-%m-%d %H:%M:%S")"
+echo
+
 # To make this script executable:
 # > chmod +x mmdebug.sh
 
@@ -38,16 +41,6 @@ echo "$"CUDA_HOME = $CUDA_HOME
 # to point to a specific CUDA version
 # > export $CUDA_HOME=/usr/local/cuda-11.8
 
-echo "$"VIRTUAL_ENV = $VIRTUAL_ENV
-# e.g. $VIRTUAL_ENV = /home/userName/path/MyEnvironmentName
-# set venv "torch_env":
-# > source ~/venvs/torch_env/bin/activate
-
-# to create env
-# > python3 -m venv MyEnvironmentName
-# to activate env
-# > source MyEnvironmentName/bin/activate
-
 # get Ubuntu version (supress "No LSB modules are available.")
 lsb_release -d 2>/dev/null
 # e.g. Description:    Ubuntu 24.04.2 LTS
@@ -74,8 +67,14 @@ if VERSION=$("$PYTHON_BIN" --version 2>&1); then
 	# e.g. Python path: /home/userName/path/MyEnvironmentName/bin/python
 	"$PYTHON_BIN" --version
 	# e.g.  Python 3.12.3
-	echo "Python venv: $VIRTUAL_ENV"
-	# e.g. Python venv: venv: /home/username/venvs/torch_env
+	echo "Python venv = $VIRTUAL_ENV"
+	# e.g. $VIRTUAL_ENV = /home/userName/path/MyEnvironmentName
+	# to create env
+	# > python3 -m venv MyEnvironmentName
+	# to set/activate env
+	# > source ~/venvs/torch_env/bin/activate
+	# or
+	# > source MyEnvironmentName/bin/activate
 	if "$PYTHON_BIN" -m pip show torch >/dev/null 2>&1; then
 		"$PYTHON_BIN" -c "import torch; print('Python Torch version =', torch.__version__)"
 		# e.g. Python Torch version = 2.7.1+cu118
@@ -94,7 +93,7 @@ else
 fi
 
 if command -v conda >/dev/null 2>&1; then
-    echo "Conda: $(conda --version)"
+    echo "Conda version: $(conda --version)"
 	# e.g. Conda: conda 26.3.2
 else
     echo "Conda: not installed"
@@ -120,17 +119,26 @@ nvidia-smi --version
 echo "All installed CUDA versions: $(basename -a /usr/local/cuda* 2>/dev/null | xargs)"
 # e.g.
 #   All installed CUDA versions: cuda cuda-11 cuda-11.8 cuda-13 cuda-13.0
+# install cuda-12.4
+# > sudo apt install cuda-toolkit-12-4 -y
 
 # Shows the installed CUDA toolkit version (compiler for CUDA programs).
 # might need export PATH=/usr/local/cuda/bin:$PATH
 if command -v nvcc >/dev/null 2>&1; then
-    nvcc --version
+	# 5 lines is too much: > nvcc --version
 	# e.g.
 	# nvcc: NVIDIA (R) Cuda compiler driver
 	# Copyright (c) 2005-2022 NVIDIA Corporation
 	# Built on Wed_Sep_21_10:33:58_PDT_2022
 	# Cuda compilation tools, release 11.8, V11.8.89
 	# Build cuda_11.8.r11.8/compiler.31833905_0
+	CUDA_VERSION=$(nvcc --version | sed -n 's/.*release \([0-9.]*\),.*/\1/p')
+	echo "CUDA version (from nvcc): $CUDA_VERSION"
+	# use symlink to point to cuda version
+	# > export PATH=/usr/local/cuda/bin:$PATH
+	# > export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+	# set symlink to cuda-12.4
+	# > sudo ln -sfn /usr/local/cuda-12.4 /usr/local/cuda
 else
     echo "nvcc: not installed (CUDA toolkit is not installed or not in PATH)"
 	# fix by picking a specific version
@@ -147,8 +155,6 @@ fi
 # > sudo cp /var/cuda-repo-ubuntu2004-11-8-local/cuda-*-keyring.gpg /usr/share/keyrings/
 # > sudo apt install cuda
 # 			=> updates gcc which is BAD and CUDA to 13
-
-# > sudo apt install cuda-toolkit-11-8 -y
 
 # what CUDA versions are available after repository setup:
 # > apt-cache search cuda-toolkit
