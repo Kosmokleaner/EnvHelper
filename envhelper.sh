@@ -19,7 +19,7 @@ echo
 # Python path: /home/userName/path/MyEnvironmentName/bin/python
 # Python 3.12.3
 # Python Torch version = 2.7.1+cu118
-# torch.cuda.is_available() = True
+#   torch.cuda.is_available() = True
 # GPU 0: NVIDIA GeForce RTX 3090 (UUID: GPU-23e45c3f-5a35-1b3a-3727-bc07e4f2f950)
 # NVIDIA-SMI version  : 580.82.07
 # NVML version        : 580.95
@@ -43,6 +43,8 @@ echo "$"CUDA_HOME = $CUDA_HOME
 
 echo "$"VIRTUAL_ENV = $VIRTUAL_ENV
 # e.g. $VIRTUAL_ENV = /home/userName/path/MyEnvironmentName
+# set venv "torch_env":
+# > source ~/venvs/torch_env/bin/activate
 
 # to create env
 # > python3 -m venv MyEnvironmentName
@@ -86,26 +88,31 @@ if VERSION=$("$PYTHON_BIN" --version 2>&1); then
 	if "$PYTHON_BIN" -m pip show torch >/dev/null 2>&1; then
 		"$PYTHON_BIN" -c "import torch; print('Python Torch version =', torch.__version__)"
 		# e.g. Python Torch version = 2.7.1+cu118
-		"$PYTHON_BIN" -c "import torch; print('torch.cuda.is_available() =', torch.cuda.is_available())"
-		# e.g. torch.cuda.is_available() = True
+		"$PYTHON_BIN" -c "import torch; print('  torch.cuda.is_available() =', torch.cuda.is_available())"
+		# e.g.   torch.cuda.is_available() = True
 	else
 		echo "Torch: not installed!"
 		# Install 11.8 CUDA version of torch (in virtual environment):
 		# > python3 -m venv ~/venvs/torch_env
 		# > source ~/venvs/torch_env/bin/activate
-# > pip uninstall torch torchvision torchaudio
-# > pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+		# > pip uninstall torch torchvision torchaudio
+		# > pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 	fi
 else
     echo "Python: non installed!"
 fi
-
-
-python -c "import torch; print('torch.cuda.is_available() =', torch.cuda.is_available())"
-
-which python
-# /home/userName/path/MyEnvironmentName/bin/python
-
+ 
+if command -v conda >/dev/null 2>&1; then
+    echo "Conda: $(conda --version)"
+	# e.g. Conda: conda 26.3.2
+else
+    echo "Conda: not installed"
+	# get https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh
+	# copy to user folder (~) e.g. cp /mnt/c/Users/<YourWindowsUsername>/Downloads/Miniforge3-Linux-x86_64.sh ~/
+	# > /home/mmittring/miniforge3/bin/conda init
+	# restart shell
+fi
+ 
 # NVIDIA GPU driver
 # e.g.
 nvidia-smi -L
@@ -130,11 +137,11 @@ echo "All installed CUDA versions: $(basename -a /usr/local/cuda* 2>/dev/null | 
 if command -v nvcc >/dev/null 2>&1; then
 	# 5 lines is too much: > nvcc --version
 	# e.g.
-# nvcc: NVIDIA (R) Cuda compiler driver
-# Copyright (c) 2005-2022 NVIDIA Corporation
-# Built on Wed_Sep_21_10:33:58_PDT_2022
-# Cuda compilation tools, release 11.8, V11.8.89
-# Build cuda_11.8.r11.8/compiler.31833905_0
+	# nvcc: NVIDIA (R) Cuda compiler driver
+	# Copyright (c) 2005-2022 NVIDIA Corporation
+	# Built on Wed_Sep_21_10:33:58_PDT_2022
+	# Cuda compilation tools, release 11.8, V11.8.89
+	# Build cuda_11.8.r11.8/compiler.31833905_0
 	CUDA_VERSION=$(nvcc --version | sed -n 's/.*release \([0-9.]*\),.*/\1/p')
 	echo "CUDA version (from nvcc): $CUDA_VERSION"
 	# use symlink to point to cuda version
