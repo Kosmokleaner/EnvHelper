@@ -42,14 +42,22 @@ Build cuda_11.8.r11.8/compiler.31833905_0
 ## example printout (Windows Powershell envhelper.bat):
 
 ```shell
-Python 3.11.4
-Torch version = 2.4.0+cu118
+$LD_LIBRARY_PATH = /usr/local/cuda/lib64:
+$CUDA_HOME = /usr/local/cuda-12.4
+Description:    Ubuntu 24.04.2 LTS
+gcc (Ubuntu 11.5.0-1ubuntu1~24.04.1) 11.5.0
+g++ (Ubuntu 11.5.0-1ubuntu1~24.04.1) 11.5.0
+Python path: /home/username/venvs/torch_env/bin/python3
+Python 3.12.3
+Python venv = /home/username/venvs/torch_env
+Python Torch version = 2.6.0+cu124
 torch.cuda.is_available() = True
-Numpy version = 1.26.4
-GPU 0: NVIDIA GeForce RTX 3090 (UUID: GPU-23e45c3f-5af5-3b3a-3767-bc07e4f2f950)
-nvcc: NVIDIA (R) Cuda compiler driver
-Copyright (c) 2005-2022 NVIDIA Corporation
-Built on Wed_Sep_21_10:41:10_Pacific_Daylight_Time_2022
-Cuda compilation tools, release 11.8, V11.8.89
-Build cuda_11.8.r11.8/compiler.31833905_0
+Conda version: conda 26.3.2
+GPU 0: NVIDIA GeForce RTX 3090 (UUID: GPU-23e25c3f...)
+NVIDIA-SMI version  : 580.82.07
+NVML version        : 580.112
+DRIVER version      : 581.95
+CUDA Version        : 13.0
+All installed CUDA versions: cuda cuda-11 cuda-11.8 cuda-12 cuda-12.4 cuda-13 cuda-13.0
+CUDA version (from nvcc): 12.4
 ```
