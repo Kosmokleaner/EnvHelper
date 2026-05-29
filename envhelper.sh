@@ -41,6 +41,14 @@ echo "$"CUDA_HOME = $CUDA_HOME
 # to point to a specific CUDA version
 # > export $CUDA_HOME=/usr/local/cuda-11.8
 
+echo "$"VIRTUAL_ENV = $VIRTUAL_ENV
+# e.g. $VIRTUAL_ENV = /home/userName/path/MyEnvironmentName
+
+# to create env
+# > python3 -m venv MyEnvironmentName
+# to activate env
+# > source MyEnvironmentName/bin/activate
+
 # get Ubuntu version (supress "No LSB modules are available.")
 lsb_release -d 2>/dev/null
 # e.g. Description:    Ubuntu 24.04.2 LTS
@@ -85,24 +93,19 @@ if VERSION=$("$PYTHON_BIN" --version 2>&1); then
 		# Install 11.8 CUDA version of torch (in virtual environment):
 		# > python3 -m venv ~/venvs/torch_env
 		# > source ~/venvs/torch_env/bin/activate
-		# > pip uninstall torch torchvision torchaudio
-		# > pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+# > pip uninstall torch torchvision torchaudio
+# > pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 	fi
 else
     echo "Python: non installed!"
 fi
 
-if command -v conda >/dev/null 2>&1; then
-    echo "Conda version: $(conda --version)"
-	# e.g. Conda: conda 26.3.2
-else
-    echo "Conda: not installed"
-	# get https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh
-	# copy to user folder (~) e.g. cp /mnt/c/Users/<YourWindowsUsername>/Downloads/Miniforge3-Linux-x86_64.sh ~/
-	# > /home/mmittring/miniforge3/bin/conda init
-	# restart shell
-fi
- 
+
+python -c "import torch; print('torch.cuda.is_available() =', torch.cuda.is_available())"
+
+which python
+# /home/userName/path/MyEnvironmentName/bin/python
+
 # NVIDIA GPU driver
 # e.g.
 nvidia-smi -L
@@ -127,11 +130,11 @@ echo "All installed CUDA versions: $(basename -a /usr/local/cuda* 2>/dev/null | 
 if command -v nvcc >/dev/null 2>&1; then
 	# 5 lines is too much: > nvcc --version
 	# e.g.
-	# nvcc: NVIDIA (R) Cuda compiler driver
-	# Copyright (c) 2005-2022 NVIDIA Corporation
-	# Built on Wed_Sep_21_10:33:58_PDT_2022
-	# Cuda compilation tools, release 11.8, V11.8.89
-	# Build cuda_11.8.r11.8/compiler.31833905_0
+# nvcc: NVIDIA (R) Cuda compiler driver
+# Copyright (c) 2005-2022 NVIDIA Corporation
+# Built on Wed_Sep_21_10:33:58_PDT_2022
+# Cuda compilation tools, release 11.8, V11.8.89
+# Build cuda_11.8.r11.8/compiler.31833905_0
 	CUDA_VERSION=$(nvcc --version | sed -n 's/.*release \([0-9.]*\),.*/\1/p')
 	echo "CUDA version (from nvcc): $CUDA_VERSION"
 	# use symlink to point to cuda version
