@@ -1,4 +1,4 @@
-# EnvHelper V 0.1
+# EnvHelper V 0.12
 
 by Martin Mittring
 MIT license
@@ -8,6 +8,11 @@ MIT license
 * log state in unix environment
 * for Unix (tested with Windows Subsystem WSL Ubuntu) and Windows Powershell
 * In the script you can find comments on how to adjust the state that was printed e.g. adjust CUDA version 
+
+## Versions
+
+* V0.1: initial version
+* V0.12: better error handling in unix version
 
 ## example printout (Windows WSL envhelper.sh):
 

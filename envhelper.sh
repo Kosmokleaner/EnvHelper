@@ -13,15 +13,16 @@
 # Description:    Ubuntu 24.04.2 LTS
 # gcc (Ubuntu 11.5.0-1ubuntu1~24.04) 11.5.0
 # g++ (Ubuntu 11.5.0-1ubuntu1~24.04) 11.5.0
-# Torch version = 2.7.1+cu118
-# torch.cuda.is_available() = True
-# /home/userName/path/MyEnvironmentName/bin/python
+# Python path: /home/userName/path/MyEnvironmentName/bin/python
 # Python 3.12.3
+# Python Torch version = 2.7.1+cu118
+# torch.cuda.is_available() = True
 # GPU 0: NVIDIA GeForce RTX 3090 (UUID: GPU-23e45c3f-5a35-1b3a-3727-bc07e4f2f950)
 # NVIDIA-SMI version  : 580.82.07
 # NVML version        : 580.95
 # DRIVER version      : 581.42
 # CUDA Version        : 13.0
+# All installed CUDA versions: cuda cuda-11 cuda-11.8 cuda-13 cuda-13.0
 # nvcc: NVIDIA (R) Cuda compiler driver
 # Copyright (c) 2005-2022 NVIDIA Corporation
 # Built on Wed_Sep_21_10:33:58_PDT_2022
@@ -30,15 +31,15 @@
 
 clear
 echo "$"LD_LIBRARY_PATH = $LD_LIBRARY_PATH
-# /usr/local/cuda/lib64:/usr/local/cuda/lib64:/usr/local/cuda/lib64
+# e.g. /usr/local/cuda/lib64:/usr/local/cuda/lib64:/usr/local/cuda/lib64
 
 echo "$"CUDA_HOME = $CUDA_HOME
-# /usr/local/cuda-11.8
+# e.g. CUDA_HOME = /usr/local/cuda-11.8
 # to point to a specific CUDA version
-# > export CUDA_HOME=/usr/local/cuda-11.8
+# > export $CUDA_HOME=/usr/local/cuda-11.8
 
 echo "$"VIRTUAL_ENV = $VIRTUAL_ENV
-# /home/userName/path/MyEnvironmentName
+# e.g. $VIRTUAL_ENV = /home/userName/path/MyEnvironmentName
 
 # to create env
 # > python3 -m venv MyEnvironmentName
@@ -47,12 +48,12 @@ echo "$"VIRTUAL_ENV = $VIRTUAL_ENV
 
 # get Ubuntu version (supress "No LSB modules are available.")
 lsb_release -d 2>/dev/null
-# Description:    Ubuntu 24.04.2 LTS
+# e.g. Description:    Ubuntu 24.04.2 LTS
 
 gcc --version | head -n 1
-# gcc (Ubuntu 11.5.0-1ubuntu1~24.04) 11.5.0
+# e.g. gcc (Ubuntu 11.5.0-1ubuntu1~24.04) 11.5.0
 g++ --version | head -n 1
-# g++ (Ubuntu 11.5.0-1ubuntu1~24.04) 11.5.0
+# e.g. g++ (Ubuntu 11.5.0-1ubuntu1~24.04) 11.5.0
 
 # > sudo apt-get --purge remove gcc
 # > sudo apt install gcc-11 g++-11
@@ -63,51 +64,65 @@ g++ --version | head -n 1
 # > sudo update-alternatives --config gcc
 # > sudo update-alternatives --config g++
 
-python -c "import torch; print('Torch version =',torch.__version__)"
-# Torch version = 2.7.1+cu118
+# in some environments we see python, in others python3
+PYTHON_BIN=$(command -v python3 || command -v python)
 
-# Install 11.8 CUDA version of torch
-# > pip uninstall torch torchvision torchaudio
-# > pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
-
-
-python -c "import torch; print('torch.cuda.is_available() =', torch.cuda.is_available())"
-
-which python
-# /home/userName/path/MyEnvironmentName/bin/python
-
-python --version
-# Python 3.12.3
-
+if VERSION=$("$PYTHON_BIN" --version 2>&1); then
+	echo "Python path: $(which "$PYTHON_BIN")"
+	# e.g. Python path: /home/userName/path/MyEnvironmentName/bin/python
+	"$PYTHON_BIN" --version
+	# e.g.  Python 3.12.3
+	echo "Python venv: $VIRTUAL_ENV"
+	# e.g. Python venv: venv: /home/username/venvs/torch_env
+	if "$PYTHON_BIN" -m pip show torch >/dev/null 2>&1; then
+		"$PYTHON_BIN" -c "import torch; print('Python Torch version =', torch.__version__)"
+		# e.g. Python Torch version = 2.7.1+cu118
+		"$PYTHON_BIN" -c "import torch; print('torch.cuda.is_available() =', torch.cuda.is_available())"
+		# e.g. torch.cuda.is_available() = True
+	else
+		echo "Torch: not installed!"
+		# Install 11.8 CUDA version of torch (in virtual environment):
+		# > python3 -m venv ~/venvs/torch_env
+		# > source ~/venvs/torch_env/bin/activate
+		# > pip uninstall torch torchvision torchaudio
+		# > pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+	fi
+else
+    echo "Python: non installed!"
+fi
+ 
 # NVIDIA GPU driver
+# e.g.
 nvidia-smi -L
 # GPU 0: NVIDIA GeForce RTX 3090 (UUID: GPU-23e45c3f-5a35-1b3a-3727-bc07e4f2f950)
 
 # installed NVIDIA GPUs
 nvidia-smi --version
+# e.g.
 # NVIDIA-SMI version  : 580.95.02
 # NVML version        : 580.95
 # DRIVER version      : 581.42
 # CUDA Version        : 13.0
 
+echo "All installed CUDA versions: $(basename -a /usr/local/cuda* 2>/dev/null | xargs)"
+# e.g.
+#   All installed CUDA versions: cuda cuda-11 cuda-11.8 cuda-13 cuda-13.0
+
 # Shows the installed CUDA toolkit version (compiler for CUDA programs).
 # might need export PATH=/usr/local/cuda/bin:$PATH
-nvcc --version
-# nvcc: NVIDIA (R) Cuda compiler driver
-# Copyright (c) 2005-2022 NVIDIA Corporation
-# Built on Wed_Sep_21_10:33:58_PDT_2022
-# Cuda compilation tools, release 11.8, V11.8.89
-# Build cuda_11.8.r11.8/compiler.31833905_0
-
-# list all installed cuda versions
-# > ls -d /usr/local/cuda* | xargs -n1 basename
-#   cuda
-#   cuda-11
-#   cuda-11.8
-#   cuda-13
-#   cuda-13.0
-# pick a specific version
-# > export PATH=/usr/local/cuda-11.8/bin:$PATH
+if command -v nvcc >/dev/null 2>&1; then
+    nvcc --version
+	# e.g.
+	# nvcc: NVIDIA (R) Cuda compiler driver
+	# Copyright (c) 2005-2022 NVIDIA Corporation
+	# Built on Wed_Sep_21_10:33:58_PDT_2022
+	# Cuda compilation tools, release 11.8, V11.8.89
+	# Build cuda_11.8.r11.8/compiler.31833905_0
+else
+    echo "nvcc: not installed (CUDA toolkit is not installed or not in PATH)"
+	# fix by picking a specific version
+	# > export PATH=/usr/local/cuda-11.8/bin:$PATH
+fi
 
 # uninstall CUDA (both), confirm with "Y"
 # > sudo apt-get --purge remove "cuda*"
