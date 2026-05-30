@@ -27,7 +27,7 @@ Torch version = 2.7.1+cu118
 torch.cuda.is_available() = True
 /home/userName/path/MyEnvironmentName/bin/python
 Python 3.12.3
-GPU 0: NVIDIA GeForce RTX 3090 (UUID: GPU-23e45c3f-5a35-1b3a-3727-bc07e4f2f950)
+GPU 0: NVIDIA GeForce RTX 3090 (UUID: GPU-23e412...)
 NVIDIA-SMI version  : 580.82.07
 NVML version        : 580.95
 DRIVER version      : 581.42
