@@ -21,6 +21,10 @@ Properties:
 
 * Test / fix Windows cmd.exe
 * Add better error handling to windows version like in unix version (e.g. Python missing).
+* Improve on unifying Powershell / Cmd handling e.g.
+  * macOS / Linux: echo $VIRTUAL_ENV
+  * Windows (Cmd): echo %VIRTUAL_ENV%
+  * Windows (PowerShell): echo $env:VIRTUAL_ENV
 
 ## Versions
 
