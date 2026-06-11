@@ -18,12 +18,13 @@ Properties:
 * In the script (mostly .sh for now) you can find comments on how to adjust the state that was printed e.g. adjust CUDA version 
 
 ## Todo
+* Seprate out the python code into it's own .py file
 * Add better error handling to windows version like in unix version (e.g. Python missing).
 * Improve on unifying Powershell / Command Prompt(Cmd) handling e.g.
   * macOS / Linux: echo $VIRTUAL_ENV
   * Windows (Command Prompt): echo %VIRTUAL_ENV%
   * Windows (PowerShell): echo $env:VIRTUAL_ENV
-* Might add .ps1 script to get the Powershell native state
+* Might add .ps1 script to get the Powershell native state or make a [polyglot script](https://github.com/llamasoft/polyshell)
 
 ## Versions
 
