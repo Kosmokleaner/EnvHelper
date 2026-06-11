@@ -3,12 +3,12 @@
 by Martin Mittring
 MIT license
 
-Install and run on unix (linux / ubuntu / wsl):
+Install and run on Unix (linux / ubuntu / wsl):
 * store in home folder "~/envHelper"
 * "chmod +x ~/envHelper/envhelper.sh"
 * run: "~/envHelper/envhelper.sh"
 
-Install and run on windows (Windows 11, powershell):
+Install and run on Windows (Windows 11, powershell):
 * todo
 
 Properties:
