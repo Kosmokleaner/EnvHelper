@@ -26,14 +26,7 @@ Properties:
   * Windows (PowerShell): echo $env:VIRTUAL_ENV
 * Might add .ps1 script to get the Powershell native state or make a [polyglot script](https://github.com/llamasoft/polyshell)
 
-## Versions
-
-* V0.1: initial version
-* V0.12: better error handling in unix version
-* V0.13: .bat shows if started from Powershell or Cmd
-
 ## Unix example printout (envhelper.sh):
-
 ```shell
 $LD_LIBRARY_PATH = /usr/local/cuda/lib64:/usr/local/cuda/lib64:/usr/local/cuda/lib64
 $CUDA_HOME = /usr/local/cuda
@@ -58,7 +51,6 @@ Build cuda_11.8.r11.8/compiler.31833905_0
 ```
 
 ## Windows example printout (envhelper.bat):
-
 ```shell
 Started from PowerShell (via CMD)
 Python 3.7.9
@@ -72,3 +64,9 @@ Built on Wed_Sep_21_10:41:10_Pacific_Daylight_Time_2022
 Cuda compilation tools, release 11.8, V11.8.89
 Build cuda_11.8.r11.8/compiler.31833905_0
 ```
+
+
+## Versions
+* V0.1: initial version
+* V0.12: better error handling in unix version
+* V0.13: .bat shows if started from Powershell or Cmd
