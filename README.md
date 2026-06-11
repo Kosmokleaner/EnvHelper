@@ -4,18 +4,18 @@ by Martin Mittring
 MIT license
 
 Install and run on Unix (linux / ubuntu / wsl):
-* store in home folder "~/envHelper"
+* Store in home folder "~/envHelper"
 * "chmod +x ~/envHelper/envhelper.sh"
-* run: "~/envHelper/envhelper.sh"
+* Run: "~/envHelper/envhelper.sh"
 
 Install and run on Windows (Windows 11, powershell):
 * todo
 
 Properties:
+* Runs on Unix (use .sh, tested with Windows Subsystem WSL Ubuntu and native Ubuntu)
+* Runs on Windows (.bat works for Cmd and Powershell as the later one calls Cmd for .bat files)
 * Side effect free
-* log state in unix environment
-* runs on Unix (use .sh, tested with Windows Subsystem WSL Ubuntu and native Ubuntu)
-* runs on Windows (.bat works for Cmd and Powershell as the later one calls Cmd for .bat files)
+* Log state in unix environment
 * In the script (mostly .sh for now) you can find comments on how to adjust the state that was printed e.g. adjust CUDA version 
 
 ## Todo
