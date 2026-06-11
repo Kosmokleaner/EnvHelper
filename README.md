@@ -1,7 +1,6 @@
 # EnvHelper V 0.13
 
-by Martin Mittring
-MIT license
+by Martin Mittring, MIT license
 
 Install and run on Unix (linux / ubuntu / wsl):
 * Store in home folder "~/envHelper"
