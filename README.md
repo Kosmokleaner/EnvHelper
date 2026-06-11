@@ -12,23 +12,24 @@ Install and run on Windows (Windows 11, powershell):
 
 Properties:
 * Runs on Unix (use .sh, tested with Windows Subsystem WSL Ubuntu and native Ubuntu)
-* Runs on Windows (.bat works for Cmd and Powershell as the later one calls Cmd for .bat files)
+* Runs on Windows (.bat works for Command Prompt(Cmd) and Powershell as it calls cmd.exe for .bat files)
 * Side effect free
 * Log state in unix environment
 * In the script (mostly .sh for now) you can find comments on how to adjust the state that was printed e.g. adjust CUDA version 
 
 ## Todo
 * Add better error handling to windows version like in unix version (e.g. Python missing).
-* Improve on unifying Powershell / Cmd handling e.g.
+* Improve on unifying Powershell / Command Prompt(Cmd) handling e.g.
   * macOS / Linux: echo $VIRTUAL_ENV
-  * Windows (Cmd): echo %VIRTUAL_ENV%
+  * Windows (Command Prompt): echo %VIRTUAL_ENV%
   * Windows (PowerShell): echo $env:VIRTUAL_ENV
+* Might add .ps1 script to get the Powershell native state
 
 ## Versions
 
 * V0.1: initial version
 * V0.12: better error handling in unix version
-* V0.13: .bat shows if started from Powershell or cmd
+* V0.13: .bat shows if started from Powershell or Cmd
 
 ## Unix example printout (envhelper.sh):
 
