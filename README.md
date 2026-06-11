@@ -1,4 +1,4 @@
-# EnvHelper V 0.12
+# EnvHelper V 0.13
 
 by Martin Mittring
 MIT license
@@ -14,12 +14,11 @@ Install and run on windows (Windows 11, powershell):
 Properties:
 * Side effect free
 * log state in unix environment
-* for Unix (tested with Windows Subsystem WSL Ubuntu) and Windows Powershell
-* In the script you can find comments on how to adjust the state that was printed e.g. adjust CUDA version 
+* runs on Unix (use .sh, tested with Windows Subsystem WSL Ubuntu and native Ubuntu)
+* runs on Windows (.bat works for Cmd and Powershell as the later one calls Cmd for .bat files)
+* In the script (mostly .sh for now) you can find comments on how to adjust the state that was printed e.g. adjust CUDA version 
 
 ## Todo
-
-* Test / fix Windows cmd.exe
 * Add better error handling to windows version like in unix version (e.g. Python missing).
 * Improve on unifying Powershell / Cmd handling e.g.
   * macOS / Linux: echo $VIRTUAL_ENV
@@ -30,8 +29,9 @@ Properties:
 
 * V0.1: initial version
 * V0.12: better error handling in unix version
+* V0.13: .bat shows if started from Powershell or cmd
 
-## example printout (Windows WSL envhelper.sh):
+## Unix example printout (envhelper.sh):
 
 ```shell
 $LD_LIBRARY_PATH = /usr/local/cuda/lib64:/usr/local/cuda/lib64:/usr/local/cuda/lib64
@@ -56,9 +56,10 @@ Cuda compilation tools, release 11.8, V11.8.89
 Build cuda_11.8.r11.8/compiler.31833905_0
 ```
 
-## example printout (Windows Powershell envhelper.bat):
+## Windows example printout (envhelper.bat):
 
 ```shell
+Started from PowerShell (via CMD)
 $LD_LIBRARY_PATH = /usr/local/cuda/lib64:
 $CUDA_HOME = /usr/local/cuda-12.4
 Description:    Ubuntu 24.04.2 LTS
