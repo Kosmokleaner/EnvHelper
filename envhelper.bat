@@ -3,6 +3,12 @@
 @echo off
 cls
 
+if "%PROMPT%"=="$P$G" (
+    echo Started from CMD
+) else (
+    echo Started from PowerShell (via CMD)
+)
+
 python --version
 
 python -c "import torch; print('Torch version =',torch.__version__)"
