@@ -145,6 +145,13 @@ else
 	# > export PATH=/usr/local/cuda-11.8/bin:$PATH
 fi
 
+if [ -f "node" ]; then
+    node -v
+    # e.g. v18.19.1
+else
+    echo "node: not installed !"
+fi
+
 # uninstall CUDA (both), confirm with "Y"
 # > sudo apt-get --purge remove "cuda*"
 # > sudo apt-get autoremove
