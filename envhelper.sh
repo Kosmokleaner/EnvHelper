@@ -145,11 +145,12 @@ else
 	# > export PATH=/usr/local/cuda-11.8/bin:$PATH
 fi
 
-if [ -f "node" ]; then
-    node -v
-    # e.g. v18.19.1
+
+if command -v node >/dev/null 2>&1; then
+    echo "Node.js: $(node -v)"
 else
-    echo "node: not installed !"
+    echo "Node.js: not installed!"
+    exit 1
 fi
 
 # uninstall CUDA (both), confirm with "Y"
