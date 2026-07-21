@@ -3,7 +3,7 @@
 @echo off
 cls
 
-echo https://github.com/Kosmokleaner/EnvHelper V0.13 today: %date% %time%
+echo https://github.com/Kosmokleaner/EnvHelper V0.14 today: %date% %time%
 rem empty line echo in .bat, "(" is needed
 echo(
 
@@ -36,6 +36,12 @@ rem to activate env (cmd.exe)
 rem > MyEnvironmentName\Scripts\activate.bat
 rem to activate env (Powershell)
 rem > MyEnvironmentName\Scripts\Activate.ps1
+rem Uninstall torch (might be needed to install CUDA)
+rem > pip uninstall torch torchvision torchaudio -y
+rem Install torch (CUDA / GPU)
+rem > pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
+
+
 
 python %SCRIPT_DIR%envhelper.py
 

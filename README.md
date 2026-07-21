@@ -1,4 +1,4 @@
-# EnvHelper V 0.13
+# EnvHelper V 0.14
 
 by Martin Mittring, MIT license
 
@@ -74,3 +74,4 @@ Build cuda_11.8.r11.8/compiler.31833905_0
 * V0.1: initial version
 * V0.12: better error handling in unix version
 * V0.13: .bat shows if started from Powershell or Cmd
+* V0.14: better windows code, separate .py file
