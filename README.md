@@ -18,7 +18,7 @@ Properties:
 * In the script (mostly .sh for now) you can find comments on how to adjust the state that was printed e.g. adjust CUDA version 
 
 ## Todo
-* Seprate out the python code into it's own .py file
+* Separate out the python code into it's own .py file
 * Add better error handling to windows version like in unix version (e.g. Python missing).
 * Improve on unifying Powershell / Command Prompt(Cmd) handling e.g.
   * macOS / Linux: echo $VIRTUAL_ENV
@@ -52,11 +52,15 @@ Build cuda_11.8.r11.8/compiler.31833905_0
 
 ## Windows example printout (envhelper.bat):
 ```shell
-Started from PowerShell (via CMD)
-Python 3.7.9
-Torch version = 1.13.1+cpu
-torch.cuda.is_available() = False
-Numpy version = 1.21.6
+https://github.com/Kosmokleaner/EnvHelper V0.13 today: Tue 07/21/2026 16:28:41.34
+
+Started from CMD.exe
+Running python script in: D:\dev\github\EnvHelper\
+Python 3.11.4
+$VIRTUAL_ENV = D:\dev\PythonExperiments\MyEnvironmentName
+Torch version = 2.13.0+cu126
+torch.cuda.is_available() = True
+Numpy version = 2.4.4
 GPU 0: NVIDIA GeForce RTX 3090 (UUID: GPU-23e412...)
 nvcc: NVIDIA (R) Cuda compiler driver
 Copyright (c) 2005-2022 NVIDIA Corporation

@@ -1,8 +1,7 @@
 # EnvHelper # by Martin Mittring # MIT license
 # Side effect free, log state in unix environment, tested with Windows Subsystem Linux (WSL)
-# Version 0.1 10/1/1025
 
-echo "https://github.com/Kosmokleaner/EnvHelper V0.12 $(date "+%Y-%m-%d %H:%M:%S")"
+echo "https://github.com/Kosmokleaner/EnvHelper V0.13 today: $(date "+%Y-%m-%d %H:%M:%S")"
 echo
 
 # To make this script executable:
