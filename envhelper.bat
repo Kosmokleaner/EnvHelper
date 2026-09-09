@@ -36,6 +36,8 @@ rem to activate env (cmd.exe)
 rem > MyEnvironmentName\Scripts\activate.bat
 rem to activate env (Powershell)
 rem > MyEnvironmentName\Scripts\Activate.ps1
+rem to deactivate env
+rem > deactivate
 rem Uninstall torch (might be needed to install CUDA)
 rem > pip uninstall torch torchvision torchaudio -y
 rem Install torch (CUDA / GPU)
